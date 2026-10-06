@@ -18,6 +18,7 @@ Open [http://127.0.0.1:43123](http://127.0.0.1:43123).
 - **Timing** — flip speed, character stagger, hold time, change gap, auto-rotate
 - **Look** — Solari / Terminal / Night Ops / Harbor themes, custom colors, scale, gap, brightness, alignment, charset
 - **Ops** — headers, clock, flap sound, export/import JSON, reset defaults
+- **Export to site** — download a React component or HTML/CSS/JS pack with your board baked in
 - **Live controls** — pause, skip, open settings (gear)
 
 Settings persist in `localStorage`.

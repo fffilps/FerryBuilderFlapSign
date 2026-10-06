@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import {
+  Code2,
   Copy,
   Download,
   GripVertical,
@@ -10,6 +11,7 @@ import {
   Trash2,
   Upload,
 } from "lucide-react";
+import { SiteExportPanel } from "@/components/flap/SiteExportPanel";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -242,6 +244,7 @@ export function SettingsPanel({
   const fileRef = useRef<HTMLInputElement>(null);
   const [importError, setImportError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [siteExportOpen, setSiteExportOpen] = useState(false);
 
   const patch = (partial: Partial<FlapBoardConfig>) =>
     onChange({ ...config, ...partial });
@@ -303,6 +306,7 @@ export function SettingsPanel({
   };
 
   return (
+    <>
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
         side="right"
@@ -718,6 +722,28 @@ export function SettingsPanel({
 
               <div className="space-y-2">
                 <p className="text-xs font-medium tracking-wide uppercase">
+                  Export to your site
+                </p>
+                <p className="text-[0.7rem] leading-relaxed text-muted-foreground">
+                  Ship this board as a React component or as plain HTML, CSS,
+                  and JS — ready to embed anywhere.
+                </p>
+                <Button
+                  type="button"
+                  variant="default"
+                  size="sm"
+                  className="w-full"
+                  onClick={() => setSiteExportOpen(true)}
+                >
+                  <Code2 data-icon="inline-start" />
+                  Export for your site
+                </Button>
+              </div>
+
+              <Separator />
+
+              <div className="space-y-2">
+                <p className="text-xs font-medium tracking-wide uppercase">
                   Config transfer
                 </p>
                 <div className="grid grid-cols-2 gap-2">
@@ -784,5 +810,12 @@ export function SettingsPanel({
         </Tabs>
       </SheetContent>
     </Sheet>
+
+      <SiteExportPanel
+        open={siteExportOpen}
+        onOpenChange={setSiteExportOpen}
+        config={config}
+      />
+    </>
   );
 }
